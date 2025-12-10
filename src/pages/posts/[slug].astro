@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { Fragment } from "astro/jsx-runtime";
 import "../../styles/home.css";
 import "../../styles/post-detail.css";
 import "../../styles/page-transitions.css";
@@ -8,19 +8,69 @@ import Navigation from "../../components/Navigation.astro";
 import Footer from "../../components/Footer.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const posts = (await getCollection("posts")) as any[];
+  return posts
+    .map((post) => {
+      // Get slug from post - try multiple fallbacks
+      let slug = post.slug;
+      if (!slug && post.id) {
+        // Extract slug from id (e.g., "posts/my-post.md" -> "my-post")
+        slug = post.id.split("/").pop()?.replace(/\.md$/, "") || "";
+      }
+      if (!slug) {
+        console.warn("Post missing slug in getStaticPaths:", post);
+        return null;
+      }
+      return {
+        params: { slug },
+        props: { post },
+      };
+    })
+    .filter(Boolean);
 }
 
 interface Props {
-  post: CollectionEntry<"posts">;
+  post: any;
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+
+if (!post) {
+  throw new Error("Post is undefined");
+}
+
+// With glob loader in Astro 6.0, post has:
+// - post.data: frontmatter (already parsed by schema)
+// - post.body: markdown content (raw string)
+// - post.rendered: pre-rendered content (if available)
+let Content;
+
+// First, check if post.rendered exists and has Content
+if (
+  post.rendered &&
+  typeof post.rendered === "object" &&
+  post.rendered.Content
+) {
+  Content = post.rendered.Content;
+} else if (post.body) {
+  // Render markdown using unified/remark
+  const { unified } = await import("unified");
+  const remarkParse = (await import("remark-parse")).default;
+  const remarkRehype = (await import("remark-rehype")).default;
+  const rehypeStringify = (await import("rehype-stringify")).default;
+
+  const processor = unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify);
+
+  const result = await processor.process(post.body);
+  Content = String(result);
+} else {
+  throw new Error(
+    `Cannot find content in post. Available keys: ${Object.keys(post).join(", ")}`
+  );
+}
 ---
 
 <html lang="en">
@@ -49,7 +99,7 @@ const { Content } = await post.render();
           {
             post.data.tags && post.data.tags.length > 0 && (
               <div class="post-detail-tags">
-                {post.data.tags.map((tag) => (
+                {post.data.tags.map((tag: string) => (
                   <span class="post-detail-tag">{tag}</span>
                 ))}
               </div>
@@ -73,7 +123,13 @@ const { Content } = await post.render();
         </div>
 
         <div class="post-content post-content-animate">
-          <Content />
+          {
+            typeof Content === "function" ? (
+              <Content />
+            ) : (
+              <div set:html={Content} />
+            )
+          }
         </div>
       </div>
     </main>

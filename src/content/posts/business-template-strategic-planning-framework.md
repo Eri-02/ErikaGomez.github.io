@@ -4,6 +4,7 @@ date: "6/27/2025"
 author: "Someone"
 tags: ["Node.js"]
 readTime: "3 min read"
+excerpt: "A comprehensive strategic planning framework designed to help organizations develop effective business strategies. This template covers market analysis, strategic objectives, implementation planning, and resource requirements for businesses of all sizes."
 ---
 
 ## Template Note

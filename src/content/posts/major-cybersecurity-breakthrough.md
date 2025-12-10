@@ -4,6 +4,7 @@ date: "6/27/2025"
 author: "Someone"
 tags: []
 readTime: "6 min read"
+excerpt: "Researchers have unveiled a revolutionary AI-powered threat detection system that can identify and neutralize cyber attacks with unprecedented accuracy. This breakthrough promises to reshape cybersecurity by reducing response times from hours to milliseconds."
 ---
 
 ## Introduction

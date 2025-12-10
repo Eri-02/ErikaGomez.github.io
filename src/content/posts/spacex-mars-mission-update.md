@@ -4,6 +4,7 @@ date: "6/27/2025"
 author: "Someone"
 tags: ["Astro"]
 readTime: "2 min read"
+excerpt: "SpaceX has achieved a major milestone with the successful completion of Starship's first orbital test flight. This historic event brings humanity one step closer to establishing a sustainable presence on the Red Planet through advanced space technology."
 ---
 
 ## Mission Overview

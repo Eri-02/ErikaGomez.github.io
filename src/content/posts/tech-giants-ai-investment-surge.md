@@ -4,6 +4,7 @@ date: "6/27/2025"
 author: "Someone"
 tags: ["CSS"]
 readTime: "5 min read"
+excerpt: "Major technology companies have dramatically increased their AI investments, with total spending exceeding $500 billion in 2025. This unprecedented surge reflects the growing importance of artificial intelligence in shaping the future of technology across all sectors."
 ---
 
 ## Introduction

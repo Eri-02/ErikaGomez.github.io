@@ -15,9 +15,14 @@
     "@giscus/react": "^3.1.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.16.3",
+    "astro": "6.0.0-alpha.0",
     "framer-motion": "^12.23.25",
+    "gray-matter": "^4.0.3",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5"
   }
 }

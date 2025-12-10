@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Giscus from '@giscus/react';
 
 interface GiscusCommentsProps {
@@ -27,20 +27,26 @@ const GiscusComments: React.FC<GiscusCommentsProps> = ({
     loading: 'lazy' as const, // fixed
   };
 
+  useEffect(() => {
+    console.log('GiscusComments component mounted');
+  }, []);
+
   return (
-    <Giscus
-      repo={giscusConfig.repo}
-      repoId={giscusConfig.repoId}
-      category={giscusConfig.category}
-      categoryId={giscusConfig.categoryId}
-      mapping={giscusConfig.mapping}
-      reactionsEnabled={giscusConfig.reactionsEnabled}
-      emitMetadata={giscusConfig.emitMetadata}
-      inputPosition={giscusConfig.inputPosition}
-      theme={giscusConfig.theme}
-      lang={giscusConfig.lang}
-      loading={giscusConfig.loading}
-    />
+    <div id="giscus-container">
+      <Giscus
+        repo={giscusConfig.repo}
+        repoId={giscusConfig.repoId}
+        category={giscusConfig.category}
+        categoryId={giscusConfig.categoryId}
+        mapping={giscusConfig.mapping}
+        reactionsEnabled={giscusConfig.reactionsEnabled}
+        emitMetadata={giscusConfig.emitMetadata}
+        inputPosition={giscusConfig.inputPosition}
+        theme={giscusConfig.theme}
+        lang={giscusConfig.lang}
+        loading={giscusConfig.loading}
+      />
+    </div>
   );
 };
 

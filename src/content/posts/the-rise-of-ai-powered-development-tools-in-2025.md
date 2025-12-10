@@ -4,6 +4,7 @@ date: "5/15/2025"
 author: "Someone"
 tags: ["CSS", "Design"]
 readTime: "4 min read"
+excerpt: "AI tools are reshaping software development in 2025, from code generation to automated testing. This article explores the most significant trends in AI-powered development tools and their transformative impact on the modern developer workflow and productivity."
 ---
 
 ## Introduction

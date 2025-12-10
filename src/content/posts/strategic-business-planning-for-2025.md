@@ -4,6 +4,7 @@ date: "6/26/2025"
 author: "Someone"
 tags: ["Astro", "React"]
 readTime: "4 min read"
+excerpt: "A comprehensive guide to strategic business planning for 2025, helping organizations navigate the complex digital landscape. This framework addresses market trends, competitive positioning, and sustainable growth strategies for the modern business environment."
 ---
 
 ## Executive Summary

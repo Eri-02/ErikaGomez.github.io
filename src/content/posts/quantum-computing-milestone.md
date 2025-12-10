@@ -4,6 +4,7 @@ date: "6/27/2025"
 author: "Someone"
 tags: ["Backend", "Frontend"]
 readTime: "4 min read"
+excerpt: "Researchers have successfully developed a quantum computer with over 1000 qubits, marking a historic breakthrough in the field. This achievement opens new possibilities for solving complex computational problems in cryptography, drug discovery, and optimization."
 ---
 
 ## Introduction
